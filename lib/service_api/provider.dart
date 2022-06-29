@@ -7,7 +7,7 @@ String apiKey = "563492ad6f91700001000001a60a032cce384a269c298ae5e03cc51f";
 
 Future<WallPaperModel> getWallPaperData() async {
   WallPaperModel? result;
-  String url = "https://api.pexels.com/v1/curated?per_page=15&page=1";
+  String url = "https://api.pexels.com/v1/curated?per_page=15&page=2";
   Response response = await Dio().get(url,
       options: Options(
         validateStatus: (status) => true,

@@ -19,6 +19,7 @@ class ImageView extends StatefulWidget {
 class _ImageViewState extends State<ImageView> {
 
   final box = Hive.box<String>('LikedImage');
+  bool _favorite = false ;
 
   @override
   Widget build(BuildContext context) {
@@ -80,13 +81,18 @@ class _ImageViewState extends State<ImageView> {
               right: MediaQuery.of(context).size.width * 0.06,
               child: IconButton(
                 icon: Icon(
-                  Icons.favorite,
-                  color: Colors.white,
+                  _favorite == true ? Icons.favorite: Icons.favorite_border,
+                  color: _favorite == true ? Colors.red : Colors.white,
                 ),
                 onPressed: () {
-                   box.add(widget.imgurl);
-                  // final person = box.getAt(2);
-                  // print(person);
+                  setState(() {
+                    _favorite = !_favorite ;
+                  });
+                  if (box.values.contains(widget.imgurl)) {
+                  } else {
+                    box.add(widget.imgurl);
+                  }
+
                 },
               ))
         ],
