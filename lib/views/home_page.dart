@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallpaper/service_api/provider.dart';
+import 'package:wallpaper/views/Favorite_Page.dart';
 import 'package:wallpaper/views/search_page.dart';
 import 'package:wallpaper/views/widget/widget.dart';
 
@@ -39,7 +40,7 @@ class _HomepageState extends State<Homepage> {
               color: Colors.white,
             ),
             onPressed: () {
-              // do something
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>FavoritePage()));
             },
           )
         ],

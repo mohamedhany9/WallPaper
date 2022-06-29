@@ -3,7 +3,9 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:wallpaper/database/liked_image.dart';
 
 class ImageView extends StatefulWidget {
   final String imgurl;
@@ -15,6 +17,9 @@ class ImageView extends StatefulWidget {
 }
 
 class _ImageViewState extends State<ImageView> {
+
+  final box = Hive.box<String>('LikedImage');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +75,20 @@ class _ImageViewState extends State<ImageView> {
               ],
             ),
           ),
+          Positioned(
+              top: MediaQuery.of(context).size.height * 0.06,
+              right: MediaQuery.of(context).size.width * 0.06,
+              child: IconButton(
+                icon: Icon(
+                  Icons.favorite,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                   box.add(widget.imgurl);
+                  // final person = box.getAt(2);
+                  // print(person);
+                },
+              ))
         ],
       ),
     );

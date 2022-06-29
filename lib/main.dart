@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:wallpaper/database/liked_image.dart';
 import 'package:wallpaper/service_api/provider.dart';
 import 'package:wallpaper/views/home_page.dart';
 
-void main() {
+void main() async{
+  await Hive.initFlutter();
+
+  //Hive.registerAdapter(LikedImage());
+  await Hive.openBox<String>('LikedImage');
+
   runApp(const MyApp());
 }
 
